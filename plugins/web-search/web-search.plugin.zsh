@@ -43,8 +43,7 @@ web_search()
   done
 
   url="${url%?}" # remove the last '+'
-  nohup $open_cmd "$url"
-  rm nohup.out
+  nohup $open_cmd "$url" &>/dev/null </dev/null &
 }
 
 
