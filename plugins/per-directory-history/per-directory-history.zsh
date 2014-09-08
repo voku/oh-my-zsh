@@ -62,7 +62,7 @@
 # toggle global/directory history used for searching - ctrl-G by default
 #-------------------------------------------------------------------------------
 
-function per-directory-history-toggle-history()
+per-directory-history-toggle-history()
 {
   if [[ $_per_directory_history_is_global == true ]]; then
     _per-directory-history-set-directory-history
@@ -85,7 +85,7 @@ bindkey '^G' per-directory-history-toggle-history
 
 _per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
 
-function _per-directory-history-change-directory()
+_per-directory-history-change-directory()
 {
   _per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
   mkdir -p ${_per_directory_history_directory:h}
@@ -109,14 +109,13 @@ function _per-directory-history-change-directory()
   fi
 }
 
-function _per-directory-history-addhistory()
+_per-directory-history-addhistory()
 {
-  print -Sr -- ${1%%$'\n'}
+  print -Sr -- "${1%%$'\n'}"
   fc -p $_per_directory_history_directory
 }
 
-
-function _per-directory-history-set-directory-history()
+_per-directory-history-set-directory-history()
 {
   if [[ $_per_directory_history_is_global == true ]]; then
     fc -AI $HISTFILE
@@ -130,7 +129,7 @@ function _per-directory-history-set-directory-history()
   _per_directory_history_is_global=false
 }
 
-function _per-directory-history-set-global-history()
+_per-directory-history-set-global-history()
 {
   if [[ $_per_directory_history_is_global == false ]]; then
     fc -AI $_per_directory_history_directory
