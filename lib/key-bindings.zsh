@@ -5,21 +5,47 @@
 # Make sure that the terminal is in application mode when zle is active, since
 # only then values from $terminfo are valid
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+
   function zle-line-init() {
     echoti smkx
   }
+
   function zle-line-finish() {
     echoti rmkx
   }
+
   zle -N zle-line-init
   zle -N zle-line-finish
 fi
 
 bindkey -e                                            # Use emacs key bindings
 
+bindkey -M menuselect '^o' accept-and-infer-next-history
+
+bindkey '^i' expand-or-complete-prefix                # Tab
+bindkey "^[[2~" yank                                  # Insert
+bindkey "^[[3~" delete-char                           # Del
+bindkey "^[[5~" history-beginning-search-backward     # PageUp
+bindkey "^[[6~" history-beginning-search-forward      # PageDown
+bindkey "^[e" expand-cmd-path                         # Alt-e
+bindkey "^[[A" up-line-or-search                      # up arrow
+bindkey "^[[B" down-line-or-search                    # down arrow
+bindkey " " magic-space                               # history expansion on space
+
+if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
+  expand-or-complete-with-dots() {
+    echo -n "\e[31m......\e[0m"
+    zle expand-or-complete
+    zle redisplay
+  }
+  zle -N expand-or-complete-with-dots
+  bindkey "^I" expand-or-complete-with-dots
+fi
+
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
+
 if [[ "${terminfo[kpp]}" != "" ]]; then
   bindkey "${terminfo[kpp]}" up-line-or-history       # [PageUp] - Up a line of history
 fi
@@ -59,7 +85,7 @@ else
   bindkey "\e[3~" delete-char
 fi
 
-# Edit the current command line in $EDITOR
+# edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line

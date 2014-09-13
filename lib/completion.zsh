@@ -241,27 +241,3 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
-############# BINDKEY ######################################
-
-bindkey -M menuselect '^o' accept-and-infer-next-history
-
-bindkey -e
-bindkey '^i' expand-or-complete-prefix                  # Tab
-bindkey "^[[2~" yank                                    # Insert
-bindkey "^[[3~" delete-char                             # Del
-bindkey "^[[5~" history-beginning-search-backward       # PageUp
-bindkey "^[[6~" history-beginning-search-forward        # PageDown
-bindkey "^[e" expand-cmd-path                           # Alt-e
-bindkey "^[[A" up-line-or-search                        # up arrow
-bindkey "^[[B" down-line-or-search                      # down arrow
-bindkey " " magic-space                                 # history expansion on space
-
-if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
-  expand-or-complete-with-dots() {
-    echo -n "\e[31m......\e[0m"
-    zle expand-or-complete
-    zle redisplay
-  }
-  zle -N expand-or-complete-with-dots
-  bindkey "^I" expand-or-complete-with-dots
-fi
