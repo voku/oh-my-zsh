@@ -1,32 +1,4 @@
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
-
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
-
-# Confirm before overwriting
-# ----------------------------------------------------------------------------
-# I know it is bad practice to override the default commands, but this is for
-# my own safety. If you really want the original "instakill" versions, you can
-# use "command rm", "\rm", or "/bin/rm" inside your own commands, aliases, or
-# shell functions. Note that separate scripts are not affected by the aliases
-# defined here.
-#alias cp='cp -i'
-#alias mv='mv -i'
-#alias ln='ln -i'
-
-alias rm='rm -I'                    # 'rm -i' prompts for every file
-
-# safety features
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+#!/bin/bash
 
 # Enable simple aliases to be sudo'ed. ("sudone"?)
 # http://www.gnu.org/software/bash/manual/bashref.html#Aliases says: "If the
@@ -43,21 +15,49 @@ if which vim >/dev/null 2>&1; then
   alias vi="vim"
 fi
 
+# Confirm before overwriting
+# -----------------------------------------------------------------------------
+# I know it is bad practice to override the default commands, but this is for
+# my own safety. If you really want the original "instakill" versions, you can
+# use "command rm", "\rm", or "/bin/rm" inside your own commands, aliases, or
+# shell functions. Note that separate scripts are not affected by the aliases
+# defined here.
+#alias cp='cp -i'
+#alias mv='mv -i'
+#alias ln='ln -i'
+
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+
+# safety features
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# personal shortcuts (add something like thin in ~/.extra)
+#alias d="cd ~/Documents/Dropbox"
+#alias dl="cd ~/Downloads"
+#alias dt="cd ~/Desktop"
+#alias p="cd ~/projects"
+
+# global shortcuts
+alias g="git"
+alias h="history"
+alias j="jobs"
+
 # dmesg with readable time
 alias dmesg='dmesg -T'
-
-# Show history
-if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]; then
-  alias history='fc -fl 1'
-elif [ "$HIST_STAMPS" = "dd.mm.yyyy" ]; then
-  alias history='fc -El 1'
-elif [ "$HIST_STAMPS" = "yyyy-mm-dd" ]; then
-  alias history='fc -il 1'
-else
-  alias history='fc -l 1'
-fi
-
-alias afind='ack-grep -iH'
 
 # command with color
 if [ "$TERM" != "dumb" ]; then
@@ -141,6 +141,16 @@ else
   alias ll='ls -lFh'
 fi
 
+# Clipboard access. I created these aliases to have the same command on
+# Cygwin, Linux and OS X.
+if command -v pbpaste >/dev/null; then
+  alias getclip="pbpaste"
+  alias putclip="pbcopy"
+elif command -v xclip >/dev/null; then
+  alias getclip="xclip -o"
+  alias putclip="xclip -i"
+fi
+
 # the load-avg
 alias loadavg="cat /proc/loadavg"
 
@@ -149,6 +159,9 @@ alias partitions="cat /proc/partitions"
 
 # speedtest: get a 100MB file via wget
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
+
+# search in files
+alias afind='ack-grep -iH'
 
 # displays a directory tree
 alias tree="tree -Csu"
@@ -170,21 +183,74 @@ alias date_hour='date "+%H"'
 alias date_minute='date "+%M"'
 alias date_second='date "+%S"'
 
+# stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# decimal to hexadecimal value
+alias dec2hex='printf "%x\n" $1'
+
 # mkdir: always create parent-dirs, if needed
 alias mkdir="mkdir -p"
 
 # create a dir with date from today
 alias mkdd='mkdir $(date +%Y%m%d)'
 
+# get / check for updates
+# TODO: check for debian-based
+alias updates='sudo apt-get update'
+
 # external ip address
 alias myip_dns="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip_http="GET http://ipecho.net/plain && echo"
+
+# becoming root + executing last command
+# TODO: check if we use "zsh" and "SHARE_HISTORY"?
+alias sulast='su -c $(history -p !-1) root'
+
+# Canonical hex dump; some systems have this symlinked
+command -v hd > /dev/null || alias hd="hexdump -C"
+
+# OS X has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# OS X has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Trim new lines and copy to clipboard
+alias c="tr -d '\n' | pbcopy"
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # urldecode - url http network decode
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 
 # urlencode - url encode network http
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+
+# ROT13-encode text. Works for decoding, too! ;)
+alias rot13='tr a-zA-Z n-za-mN-ZA-M'
+
+# empty the your trash-dir
+alias emptytrash="rm -rfv ~/.local/share/Trash/*"
+
+# ring the terminal bell, and put a badge on Terminal.app’s Dock icon
+# (useful when executing time-consuming commands)
+alias badge="tput bel"
+
+# intuitive map function
+#
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# one of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
+
+# make Grunt print stack traces by default
+command -v grunt > /dev/null && alias grunt="grunt --stack"
 
 # pass options to free
 alias meminfo='free -m -l -t'
@@ -229,5 +295,23 @@ alias du_overview='du -h | grep "^[0-9,]*[MG]" | sort -hr | less'
 # shows the complete disk usage to legibly
 alias df='df -kTh'
 
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
+# faster npm for europeans
+command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
+
+# php - package-manager - composer
+alias composer-install="composer install --optimize-autoloader"
+
 # add ssh-key to clipboard
 alias sshkey="cat ~/.ssh/id_rsa.pub | putclip && echo 'Copied to clipboard.'"
+
+# add ssh-key to ssh-agent when key exist
+if [ "$SSH_AUTH_SOCK" != "" ] && [ -f ~/.ssh/id_rsa ] && [ -x /usr/bin/ssh-add  ]; then
+  ssh-add -l >/dev/null || alias ssh='(ssh-add -l >/dev/null || ssh-add) && unalias ssh; ssh'
+fi
