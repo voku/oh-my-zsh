@@ -2,9 +2,13 @@
 alias pu='pushd'
 alias po='popd'
 
-# Basic directory operations
-alias ...='cd ../..'
-alias -- -='cd -'
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
 
 # Confirm before overwriting
 # ----------------------------------------------------------------------------
