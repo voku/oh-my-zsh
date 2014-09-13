@@ -57,12 +57,6 @@ else
   alias history='fc -l 1'
 fi
 
-# List direcory contents
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
-
 alias afind='ack-grep -iH'
 
 # command with color
@@ -120,6 +114,7 @@ if [ "$TERM" != "dumb" ]; then
   alias ls="ls -F --color=auto"
   # displays all files and directories in detail
   alias la="ls -laFh --color=auto"
+  alias lsa="la"
   # displays all files and directories in detail with newest-files at bottom
   alias lr="ls -laFhtr --color=auto"
   # show last 10 recently changed files
@@ -136,5 +131,12 @@ if [ "$TERM" != "dumb" ]; then
   alias dir="ls --color=auto --format=vertical"
   # displays more information about files and directories
   alias vdir="ls --color=auto --format=long"
+else
+  # only some default-"ls"-commands as fallback
+  alias l='ls -lFh'
+  alias l.='ls -dlFh .*'
+  alias la='ls -laFh'
+  alias lr='ls -laFhtr'
+  alias lsa='la'
+  alias ll='ls -lFh'
 fi
-
