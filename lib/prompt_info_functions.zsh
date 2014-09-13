@@ -10,7 +10,7 @@
 # Dummy implementations that return false to prevent command_not_found
 # errors with themes, that implement these functions
 # Real implementations will be used when the respective plugins are loaded
-chruby_prompt_info \
+function chruby_prompt_info \
   hg_prompt_info \
   pyenv_prompt_info \
   rbenv_prompt_info \

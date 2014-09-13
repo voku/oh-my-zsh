@@ -3,7 +3,7 @@
 #Fully support screen, iterm, and probably most modern xterm and rxvt
 #Limited support for Apple Terminal (Terminal can't set window or tab separately)
 
-title
+function title
 {
   if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]]; then
     return
@@ -21,13 +21,13 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"
 
 #Appears when you have the prompt
-omz_termsupport_precmd
+function omz_termsupport_precmd
 {
   title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
 }
 
 #Appears at the beginning of (and during) of command execution
-omz_termsupport_preexec
+function omz_termsupport_preexec
 {
   emulate -L zsh
   setopt extended_glob
