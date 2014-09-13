@@ -143,3 +143,6 @@ fi
 
 # the load-avg
 alias loadavg="cat /proc/loadavg"
+
+# show all partitions
+alias partitions="cat /proc/partitions"
