@@ -140,3 +140,6 @@ else
   alias lsa='la'
   alias ll='ls -lFh'
 fi
+
+# the load-avg
+alias loadavg="cat /proc/loadavg"
