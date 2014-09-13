@@ -2,8 +2,6 @@
 ############# SETOPT ######################################
 
 setopt \
-    `# please no beeeeeeps` \
-    NO_BEEP \
     `# automatically list choices on an ambiguous completion` \
     AUTO_LIST \
     `# automatically use menu completion after the second consecutive request for completion` \
@@ -22,8 +20,6 @@ setopt \
     EXTENDED_GLOB \
     `# do not require a leading ‘.’ in a filename to be matched explicitly` \
     GLOB_DOTS \
-    `# list jobs in the long format by default` \
-    LONG_LIST_JOBS \
     `# append a trailing ‘/’ to all directory names resulting from filename generation` \
     MARK_DIRS \
     `# don’t push multiple copies of the same directory onto the directory stack` \

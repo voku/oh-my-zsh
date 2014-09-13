@@ -1,15 +1,16 @@
-## smart urls
+
+# smart urls
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
-## file rename magick
-bindkey "^[m" copy-prev-shell-word
+# set default options
+setopt \
+  `# please no beeeeeeps` \
+  NO_BEEP \
+  `# list jobs in the long format by default` \
+  LONG_LIST_JOBS
 
-## jobs
-setopt long_list_jobs
-
-## pager
+# TODO: move this e.g. to: ".export"-file
 export PAGER="less"
 export LESS="-R"
-
 export LC_CTYPE=$LANG
