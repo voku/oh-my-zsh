@@ -19,6 +19,11 @@ alias -- -='cd -'
 
 alias rm='rm -I'                    # 'rm -i' prompts for every file
 
+# safety features
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
 # Enable simple aliases to be sudo'ed. ("sudone"?)
 # http://www.gnu.org/software/bash/manual/bashref.html#Aliases says: "If the
 # last character of the alias value is a space or tab character, then the next
