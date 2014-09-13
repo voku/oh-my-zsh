@@ -210,3 +210,12 @@ alias pst='pstree -Alpha'
 
 # shows all your processes
 alias psmy='ps -ef | grep $USER'
+
+# displays the ports that use the applications
+alias lsport='sudo lsof -i -T -n'
+
+# shows more about the ports on which the applications use
+alias llport='netstat -nape --inet --inet6'
+
+# show only active network listeners
+alias netlisteners='sudo lsof -i -P | grep LISTEN'
