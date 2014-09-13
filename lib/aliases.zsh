@@ -219,3 +219,12 @@ alias llport='netstat -nape --inet --inet6'
 
 # show only active network listeners
 alias netlisteners='sudo lsof -i -P | grep LISTEN'
+
+# shows the disk usage of a directory legibly
+alias du='du -kh'
+
+# show the biggest files in a folder first
+alias du_overview='du -h | grep "^[0-9,]*[MG]" | sort -hr | less'
+
+# shows the complete disk usage to legibly
+alias df='df -kTh'
