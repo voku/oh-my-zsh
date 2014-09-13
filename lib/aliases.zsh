@@ -176,3 +176,7 @@ alias mkdir="mkdir -p"
 # create a dir with date from today
 alias mkdd='mkdir $(date +%Y%m%d)'
 
+# external ip address
+alias myip_dns="dig +short myip.opendns.com @resolver1.opendns.com"
+alias myip_http="GET http://ipecho.net/plain && echo"
+
