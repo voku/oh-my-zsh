@@ -158,3 +158,14 @@ alias ltree="tree -Csu | less -R"
 
 # Gzip-enabled `curl`
 alias gurl='curl --compressed'
+
+# date
+alias date_iso_8601='date "+%Y%m%dT%H%M%S"'
+alias date_clean='date "+%Y-%m-%d"'
+alias date_year='date "+%Y"'
+alias date_month='date "+%m"'
+alias date_week='date "+%V"'
+alias date_day='date "+%d"'
+alias date_hour='date "+%H"'
+alias date_minute='date "+%M"'
+alias date_second='date "+%S"'
