@@ -43,6 +43,9 @@ if which vim >/dev/null 2>&1; then
   alias vi="vim"
 fi
 
+# dmesg with readable time
+alias dmesg='dmesg -T'
+
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]; then
   alias history='fc -fl 1'
