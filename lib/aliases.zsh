@@ -185,3 +185,10 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 
 # urlencode - url encode network http
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+
+# pass options to free
+alias meminfo='free -m -l -t'
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
