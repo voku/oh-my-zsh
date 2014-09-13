@@ -228,3 +228,6 @@ alias du_overview='du -h | grep "^[0-9,]*[MG]" | sort -hr | less'
 
 # shows the complete disk usage to legibly
 alias df='df -kTh'
+
+# add ssh-key to clipboard
+alias sshkey="cat ~/.ssh/id_rsa.pub | putclip && echo 'Copied to clipboard.'"
