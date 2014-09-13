@@ -146,3 +146,6 @@ alias loadavg="cat /proc/loadavg"
 
 # show all partitions
 alias partitions="cat /proc/partitions"
+
+# speedtest: get a 100MB file via wget
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
