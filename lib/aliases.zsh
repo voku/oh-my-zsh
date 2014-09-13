@@ -6,6 +6,19 @@ alias po='popd'
 alias ...='cd ../..'
 alias -- -='cd -'
 
+# Confirm before overwriting
+# ----------------------------------------------------------------------------
+# I know it is bad practice to override the default commands, but this is for
+# my own safety. If you really want the original "instakill" versions, you can
+# use "command rm", "\rm", or "/bin/rm" inside your own commands, aliases, or
+# shell functions. Note that separate scripts are not affected by the aliases
+# defined here.
+#alias cp='cp -i'
+#alias mv='mv -i'
+#alias ln='ln -i'
+
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+
 # Enable simple aliases to be sudo'ed. ("sudone"?)
 # http://www.gnu.org/software/bash/manual/bashref.html#Aliases says: "If the
 # last character of the alias value is a space or tab character, then the next
