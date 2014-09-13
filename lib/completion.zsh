@@ -22,16 +22,6 @@ setopt \
     EXTENDED_GLOB \
     `# do not require a leading ‘.’ in a filename to be matched explicitly` \
     GLOB_DOTS \
-    `# if a new command line being added to the history list duplicates an older one, the older command is removed from the list` \
-    HIST_IGNORE_ALL_DUPS \
-    `# remove command lines from the history list when the first character on the line is a space` \
-    HIST_IGNORE_SPACE \
-    `# remove the history (fc -l) command from the history list when invoked` \
-    HIST_NO_STORE \
-    `# remove superfluous blanks from each command line being added to the history list` \
-    HIST_REDUCE_BLANKS \
-    `# whenever the user enters a line with history expansion, don’t execute the line directly; instead, perform history expansion and reload the line into the editing buffer` \
-    HIST_VERIFY \
     `# list jobs in the long format by default` \
     LONG_LIST_JOBS \
     `# append a trailing ‘/’ to all directory names resulting from filename generation` \
@@ -50,8 +40,6 @@ unsetopt \
     MENU_COMPLETE \
     `# do not freezes output to the terminal until you type ^q `\
     FLOWCONTROL \
-    `# this option both imports new commands from the history file, and also causes your typed commands to be appended to the history file` \
-    SHARE_HISTORY \
     `# do not print the directory stack after pushd or popd` \
     PUSHD_SILENT \
     `# if a command is not in the hash table, and there exists an executable directory by that name, perform the cd command to that directory` \
