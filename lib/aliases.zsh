@@ -149,3 +149,9 @@ alias partitions="cat /proc/partitions"
 
 # speedtest: get a 100MB file via wget
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
+
+# displays a directory tree
+alias tree="tree -Csu"
+
+# displays a directory tree - paginated
+alias ltree="tree -Csu | less -R"
