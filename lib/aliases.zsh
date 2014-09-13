@@ -169,3 +169,10 @@ alias date_day='date "+%d"'
 alias date_hour='date "+%H"'
 alias date_minute='date "+%M"'
 alias date_second='date "+%S"'
+
+# mkdir: always create parent-dirs, if needed
+alias mkdir="mkdir -p"
+
+# create a dir with date from today
+alias mkdd='mkdir $(date +%Y%m%d)'
+
