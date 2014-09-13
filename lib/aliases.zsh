@@ -16,15 +16,20 @@ alias sudo='sudo '
 alias _='sudo'
 alias please='sudo'
 
+# use vim
+if which vim >/dev/null 2>&1; then
+  alias vi="vim"
+fi
+
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]; then
-    alias history='fc -fl 1'
+  alias history='fc -fl 1'
 elif [ "$HIST_STAMPS" = "dd.mm.yyyy" ]; then
-    alias history='fc -El 1'
+  alias history='fc -El 1'
 elif [ "$HIST_STAMPS" = "yyyy-mm-dd" ]; then
-    alias history='fc -il 1'
+  alias history='fc -il 1'
 else
-    alias history='fc -l 1'
+  alias history='fc -l 1'
 fi
 
 # List direcory contents
