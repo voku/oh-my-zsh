@@ -21,7 +21,7 @@ lwd()
 {
   local cache_file="$ZSH/cache/last-working-dir"
 
-	[[ ! -r "$cache_file" ]] || cd `cat "$cache_file"`
+	[[ ! -r "$cache_file" ]] || cd "`cat "$cache_file"`"
 }
 
 # Automatically jump to last working directory unless this isn't the first time
