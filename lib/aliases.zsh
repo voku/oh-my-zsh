@@ -155,3 +155,6 @@ alias tree="tree -Csu"
 
 # displays a directory tree - paginated
 alias ltree="tree -Csu | less -R"
+
+# Gzip-enabled `curl`
+alias gurl='curl --compressed'
