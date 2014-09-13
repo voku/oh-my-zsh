@@ -201,3 +201,12 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 alias cpuinfo='lscpu'
 # older system use /proc/cpuinfo
 #alias cpuinfo='less /proc/cpuinfo'
+
+# shows the corresponding process to ...
+alias psx='ps auxwf | grep '
+
+# shows the process structure to clearly
+alias pst='pstree -Alpha'
+
+# shows all your processes
+alias psmy='ps -ef | grep $USER'
