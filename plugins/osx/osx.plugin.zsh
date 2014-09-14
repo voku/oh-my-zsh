@@ -7,7 +7,7 @@
 
 tab()
 {
-  local command="cd \\\"$PWD\\\"; clear; "
+  local command="cd \\\"$PWD\\\"; clear"
 
   (( $# > 0 )) && command="${command}; $*"
 
@@ -47,6 +47,7 @@ EOF
 vsplit_tab()
 {
   local command="cd \\\"$PWD\\\""
+
   (( $# > 0 )) && command="${command}; $*"
 
   the_app=$(
@@ -77,6 +78,7 @@ EOF
 split_tab()
 {
   local command="cd \\\"$PWD\\\""
+
   (( $# > 0 )) && command="${command}; $*"
 
   the_app=$(
