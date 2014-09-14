@@ -1,9 +1,4 @@
 
-#setopt no_beep
-setopt auto_cd
-setopt multios
-setopt cdablevarS
-
 if [[ x$WINDOW != x ]]; then
   SCREEN_NO="%B$WINDOW%b "
 else
@@ -18,7 +13,3 @@ ZSH_THEME_GIT_PROMPT_PREFIX="git:("         # Prefix at the very beginning of th
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"             # At the very end of the prompt
 ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty
 ZSH_THEME_GIT_PROMPT_CLEAN=""               # Text to display if the branch is clean
-
-# Setup the prompt with pretty colors
-setopt prompt_subst
-

@@ -30,7 +30,6 @@ function omz_termsupport_precmd
 function omz_termsupport_preexec
 {
   emulate -L zsh
-  setopt extended_glob
 
   # cmd name only, or if this is sudo or ssh, the next cmd
   local cmd=${1[(wr)^(*=*|sudo|ssh|rake|-*)]:gs/%/%%}
