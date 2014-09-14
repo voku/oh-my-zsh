@@ -2,44 +2,48 @@
 ############# SETOPT ######################################
 
 setopt \
-    `# automatically list choices on an ambiguous completion` \
-    AUTO_LIST \
-    `# automatically use menu completion after the second consecutive request for completion` \
-    AUTO_MENU \
-    `# when listing files that are possible completions, show the type of each file with a trailing identifying mark` \
-    LIST_TYPES \
-    `# all unquoted arguments of the form identifier=expression appearing after the command name have file expansion` \
-    MAGIC_EQUAL_SUBST \
-    `# don’t push multiple copies of the same directory onto the directory stack` \
-    PUSHD_IGNORE_DUPS \
-    `# if unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends` \
-    COMPLETE_IN_WORD \
-    `# when the current word has a glob pattern, do not insert all the words resulting from the expansion but generate matches as for completion and cycle through them` \
-    GLOB_COMPLETE \
-    `# more patterns for filename generation` \
-    EXTENDED_GLOB \
-    `# do not require a leading ‘.’ in a filename to be matched explicitly` \
-    GLOB_DOTS \
-    `# append a trailing ‘/’ to all directory names resulting from filename generation` \
-    MARK_DIRS \
-    `# don’t push multiple copies of the same directory onto the directory stack` \
-    PUSHD_IGNORE_DUPS \
-    `# remove any right prompt from display when accepting a command line. This may be useful with terminals with other cut/paste methods` \
-    TRANSIENT_RPROMPT \
-    `# allow comments even in interactive shells` \
-    INTERACTIVE_COMMENTS \
-    `# if a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word` \
-    ALWAYS_TO_END
+  `# Any parameter that is set to the absolute name of a directory immediately becomes a name for that directory in the usual form ` \
+  AUTO_NAME_DIRS \
+  `# Make cd push the old directory onto the directory stack ` \
+  AUTO_PUSHD \
+  `# swapped the meaning of cd +1 and cd -1; we want them to mean the opposite of what they mean im csh ` \
+  PUSHDMINUS
+  `# automatically list choices on an ambiguous completion` \
+  AUTO_LIST \
+  `# automatically use menu completion after the second consecutive request for completion` \
+  AUTO_MENU \
+  `# when listing files that are possible completions, show the type of each file with a trailing identifying mark` \
+  LIST_TYPES \
+  `# all unquoted arguments of the form identifier=expression appearing after the command name have file expansion` \
+  MAGIC_EQUAL_SUBST \
+  `# don’t push multiple copies of the same directory onto the directory stack` \
+  PUSHD_IGNORE_DUPS \
+  `# if unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends` \
+  COMPLETE_IN_WORD \
+  `# when the current word has a glob pattern, do not insert all the words resulting from the expansion but generate matches as for completion and cycle through them` \
+  GLOB_COMPLETE \
+  `# more patterns for filename generation` \
+  EXTENDED_GLOB \
+  `# do not require a leading ‘.’ in a filename to be matched explicitly` \
+  GLOB_DOTS \
+  `# append a trailing ‘/’ to all directory names resulting from filename generation` \
+  MARK_DIRS \
+  `# remove any right prompt from display when accepting a command line. This may be useful with terminals with other cut/paste methods` \
+  TRANSIENT_RPROMPT \
+  `# allow comments even in interactive shells` \
+  INTERACTIVE_COMMENTS \
+  `# if a completion is performed with the cursor within a word, and a full completion is inserted, the cursor is moved to the end of the word` \
+  ALWAYS_TO_END
 
 unsetopt \
-    `# do not autoselect the first completion entry ` \
-    MENU_COMPLETE \
-    `# do not freezes output to the terminal until you type ^q `\
-    FLOWCONTROL \
-    `# do not print the directory stack after pushd or popd` \
-    PUSHD_SILENT \
-    `# if a command is not in the hash table, and there exists an executable directory by that name, perform the cd command to that directory` \
-    AUTO_CD
+  `# do not autoselect the first completion entry ` \
+  MENU_COMPLETE \
+  `# do not freezes output to the terminal until you type ^q `\
+  FLOWCONTROL \
+  `# do not print the directory stack after pushd or popd` \
+  PUSHD_SILENT \
+  `# if a command is not in the hash table, and there exists an executable directory by that name, perform the cd command to that directory` \
+  AUTO_CD
 
 
 ############# AUTOLOAD ######################################
