@@ -152,7 +152,7 @@ man-preview()
 trash()
 {
   local trash_dir="${HOME}/.Trash"
-  local temp_ifs=$IFS
+  local temp_ifs="$IFS"
 
   IFS=$'\n'
   for item in "$@"; do
