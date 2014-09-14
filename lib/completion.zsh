@@ -7,7 +7,7 @@ setopt \
   `# Make cd push the old directory onto the directory stack ` \
   AUTO_PUSHD \
   `# swapped the meaning of cd +1 and cd -1; we want them to mean the opposite of what they mean im csh ` \
-  PUSHDMINUS
+  PUSHDMINUS \
   `# automatically list choices on an ambiguous completion` \
   AUTO_LIST \
   `# automatically use menu completion after the second consecutive request for completion` \
@@ -47,6 +47,8 @@ unsetopt \
 
 
 ############# AUTOLOAD ######################################
+
+# TODO: move this to e.g.: ".zsh_autoload"
 
 autoload -Uz promptinit
 promptinit
