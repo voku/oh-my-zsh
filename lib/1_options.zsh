@@ -48,6 +48,8 @@ setopt \
   EXTENDED_GLOB \
   `# do not require a leading ‘.’ in a filename to be matched explicitly` \
   GLOB_DOTS \
+  `# extra completion` \
+  COMPLETE_ALIASES \
   `# append a trailing ‘/’ to all directory names resulting from filename generation` \
   MARK_DIRS \
   `# remove any right prompt from display when accepting a command line. This may be useful with terminals with other cut/paste methods` \

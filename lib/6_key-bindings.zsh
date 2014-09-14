@@ -6,11 +6,13 @@
 # only then values from $terminfo are valid
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 
-  function zle-line-init() {
+  zle-line-init()
+  {
     echoti smkx
   }
 
-  function zle-line-finish() {
+  zle-line-finish()
+  {
     echoti rmkx
   }
 
@@ -22,18 +24,9 @@ bindkey -e                                            # Use emacs key bindings
 
 bindkey -M menuselect '^o' accept-and-infer-next-history
 
-bindkey '^i' expand-or-complete-prefix                # Tab
-bindkey "^[[2~" yank                                  # Insert
-bindkey "^[[3~" delete-char                           # Del
-bindkey "^[[5~" history-beginning-search-backward     # PageUp
-bindkey "^[[6~" history-beginning-search-forward      # PageDown
-bindkey "^[e" expand-cmd-path                         # Alt-e
-bindkey "^[[A" up-line-or-search                      # up arrow
-bindkey "^[[B" down-line-or-search                    # down arrow
-bindkey " " magic-space                               # history expansion on space
-
 if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
-  expand-or-complete-with-dots() {
+  expand-or-complete-with-dots()
+  {
     echo -n "\e[31m......\e[0m"
     zle expand-or-complete
     zle redisplay
