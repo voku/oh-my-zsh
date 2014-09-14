@@ -1,13 +1,13 @@
 local GPG_ENV=$HOME/.gnupg/gpg-agent.env
 
-start_agent_nossh
+start_agent_nossh()
 {
   eval $(/usr/bin/env gpg-agent --quiet --daemon --write-env-file ${GPG_ENV} 2> /dev/null)
   chmod 600 ${GPG_ENV}
   export GPG_AGENT_INFO
 }
 
-start_agent_withssh
+start_agent_withssh()
 {
   eval $(/usr/bin/env gpg-agent --quiet --daemon --enable-ssh-support --write-env-file ${GPG_ENV} 2> /dev/null)
   chmod 600 ${GPG_ENV}

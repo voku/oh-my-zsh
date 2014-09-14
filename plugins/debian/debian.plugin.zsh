@@ -181,7 +181,7 @@ apt-copy()
 #   apt-history rollback
 #   apt-history list
 # Based On: http://linuxcommando.blogspot.com/2008/08/how-to-show-apt-log-history.html
-apt-history ()
+apt-history()
 {
   case "$1" in
     install)
@@ -211,7 +211,7 @@ apt-history ()
 }
 
 # Kernel-package building shortcut
-kerndeb ()
+kerndeb()
 {
   # temporarily unset MAKEFLAGS ( '-j3' will fail )
   MAKEFLAGS=$( print - $MAKEFLAGS | perl -pe 's/-j\s*[\d]+//g' )
@@ -226,7 +226,7 @@ kerndeb ()
 }
 
 # List packages by size
-function apt-list-packages
+apt-list-packages()
 {
   dpkg-query -W --showformat='${Installed-Size} ${Package} ${Status}\n' | \
   grep -v deinstall | \

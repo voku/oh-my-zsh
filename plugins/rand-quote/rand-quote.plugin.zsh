@@ -11,7 +11,7 @@ COLON_COLOR="\e[0;35m"
 END_COLOR="\e[m"
 
 if [[ -x `which curl` ]]; then
-  function quote()
+  quote()
   {
     local Q=$(curl -s --connect-timeout 2 "http://www.quotationspage.com/random.php3" | iconv -c -f ISO-8859-1 -t UTF-8 | grep -m 1 "dt ")
     local TXT=$(echo "$Q" | sed -e 's/<\/dt>.*//g' -e 's/.*html//g' -e 's/^[^a-zA-Z]*//' -e 's/<\/a..*$//g')
@@ -23,7 +23,7 @@ if [[ -x `which curl` ]]; then
       quote
     fi
   }
-  #quote
 else
   echo "rand-quote plugin needs curl to work" >&2
 fi
+

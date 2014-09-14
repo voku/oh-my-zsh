@@ -1,6 +1,6 @@
 alias h='history'
 
-hs
+hs()
 {
   history | grep $*
 }

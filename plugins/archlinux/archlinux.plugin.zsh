@@ -38,7 +38,7 @@ if [[ -x `which yaourt` ]]; then
 else
   upgrade()
   {
-   sudo pacman -Syu
+    sudo pacman -Syu
   }
 fi
 
@@ -68,7 +68,8 @@ alias pacinsd='sudo pacman -S --asdeps'        # Install given package(s) as dep
 alias pacmir='sudo pacman -Syy'                # Force refresh of all package lists after updating /etc/pacman.d/mirrorlist
 
 # https://bbs.archlinux.org/viewtopic.php?id=93683
-paclist() {
+paclist()
+{
   sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
 

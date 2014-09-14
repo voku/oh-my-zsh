@@ -1,25 +1,27 @@
-_homebrew-installed() {
+_homebrew-installed()
+{
   type brew &> /dev/null
 }
 
-_awscli-homebrew-installed() {
+_awscli-homebrew-installed()
+{
   brew --prefix awscli &> /dev/null
 }
 
 export AWS_HOME=~/.aws
 
-agp
+agp()
 {
   echo $AWS_DEFAULT_PROFILE
 }
 
-asp
+asp()
 {
   export AWS_DEFAULT_PROFILE=$1
   export RPROMPT="<aws:$AWS_DEFAULT_PROFILE>"
 }
 
-aws_profiles
+aws_profiles()
 {
   reply=($(grep profile $AWS_HOME/config | sed -e 's/.*profile \([a-zA-Z0-9_-]*\).*/\1/'))
 }

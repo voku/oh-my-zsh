@@ -11,8 +11,12 @@
 # It assumes Shift+Cmd+G launches go to folder panel and Cmd+N opens new
 # app window.
 #
+# Changes:
+# 23.09.2013 Use keystroke return instead referencing "Go" button (by bitboxer)
+#
 # https://gist.github.com/3313481
-fl
+
+fl()
 {
   local dir_tmp pwd_tmp
 
@@ -22,7 +26,7 @@ fl
       dir_tmp=$(dirname $dir_tmp)
     fi
     if [ "$dir_tmp" != "." ]; then
-      pwd_tmp=`cd "$dir_tmp";pwd`
+      pwd_tmp=`cd 2>/dev/null "$dir_tmp" && pwd`
     fi
   fi
 

@@ -5,7 +5,7 @@
 #       VERSION:  1.1.0
 # ------------------------------------------------------------------------------
 
-function tab()
+tab()
 {
   local command="cd \\\"$PWD\\\"; clear; "
 
@@ -44,7 +44,7 @@ EOF
   }
 }
 
-function vsplit_tab()
+vsplit_tab()
 {
   local command="cd \\\"$PWD\\\""
   (( $# > 0 )) && command="${command}; $*"
@@ -74,7 +74,7 @@ EOF
   }
 }
 
-function split_tab()
+split_tab()
 {
   local command="cd \\\"$PWD\\\""
   (( $# > 0 )) && command="${command}; $*"
@@ -104,7 +104,7 @@ EOF
   }
 }
 
-function pfd()
+pfd()
 {
   osascript 2>/dev/null <<EOF
     tell application "Finder"
@@ -113,7 +113,7 @@ function pfd()
 EOF
 }
 
-function pfs()
+pfs()
 {
   osascript 2>/dev/null <<EOF
     set output to ""

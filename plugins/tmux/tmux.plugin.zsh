@@ -53,7 +53,7 @@ if which tmux &> /dev/null; then
 	fi
 
 	# Wrapper function for tmux.
-	function _zsh_tmux_plugin_run()
+	_zsh_tmux_plugin_run()
 	{
 		# We have other arguments, just run them
 		if [[ -n "$@" ]]; then

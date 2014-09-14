@@ -60,7 +60,7 @@ alias mvnjetty='mvn jetty:run'
 alias mvndt='mvn dependency:tree'
 alias mvns='mvn site'
 
-listMavenCompletions
+listMavenCompletions()
 {
    reply=(
       # common lifecycle

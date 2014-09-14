@@ -33,7 +33,7 @@ hg_get_branch_name()
   fi
 }
 
-hg_prompt_info
+hg_prompt_info()
 {
   if [ $(in_hg) ]; then
     local display=$(hg_get_branch_name)
@@ -42,7 +42,7 @@ $ZSH_THEME_REPO_NAME_COLOR$display$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_HG_PROMPT_SUF
   fi
 }
 
-hg_dirty_choose
+hg_dirty_choose()
 {
   if [ $(in_hg) ]; then
     hg status 2> /dev/null | grep -Eq '^\s*[ACDIM!?L]'
@@ -56,7 +56,7 @@ hg_dirty_choose
   fi
 }
 
-hg_dirty
+hg_dirty()
 {
   hg_dirty_choose $ZSH_THEME_HG_PROMPT_DIRTY $ZSH_THEME_HG_PROMPT_CLEAN
 }

@@ -8,7 +8,7 @@ local ruby19='ruby-1.9.3'
 local ruby20='ruby-2.0.0'
 local ruby21='ruby-2.1.2'
 
-rb18
+rb18()
 {
 	if [ -z "$1" ]; then
 		rvm use "$ruby18"
@@ -23,7 +23,7 @@ _rb18()
 }
 compdef _rb18 rb18
 
-rb19
+rb19()
 {
 	if [ -z "$1" ]; then
 		rvm use "$ruby19"
@@ -38,7 +38,7 @@ _rb19()
 }
 compdef _rb19 rb19
 
-rb20
+rb20()
 {
 	if [ -z "$1" ]; then
 		rvm use "$ruby20"
@@ -53,7 +53,7 @@ _rb20()
 }
 compdef _rb20 rb20
 
-rb21
+rb21()
 {
 	if [ -z "$1" ]; then
 		rvm use "$ruby21"
@@ -62,18 +62,19 @@ rb21
 	fi
 }
 
-_rb21() {
+_rb21()
+{
   compadd `ls -1 $rvm_path/gems | grep "^$ruby21@" | sed -e "s/^$ruby21@//" | awk '{print $1}'`
 }
 compdef _rb21 rb21
 
-rvm-update
+rvm-update()
 {
 	rvm get head
 }
 
 # TODO: Make this usable w/o rvm.
-gems
+gems()
 {
 	local current_ruby=`rvm-prompt i v p`
 	local current_gemset=`rvm-prompt g`
@@ -85,8 +86,9 @@ gems
 		-Ee "s/$current_ruby$current_gemset$/$fg[green]&$reset_color/g"
 }
 
-_rvm_completion
+_rvm_completion()
 {
   source $rvm_path"/scripts/zsh/Completion/_rvm"
 }
 compdef _rvm_completion rvm
+

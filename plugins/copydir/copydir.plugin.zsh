@@ -1,5 +1,5 @@
 
-copydir
+copydir()
 {
   pwd | tr -d "\r\n" | pbcopy
 }
