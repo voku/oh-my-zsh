@@ -20,6 +20,8 @@ setopt \
   HIST_REDUCE_BLANKS \
   `# whenever the user enters a line with history expansion, don’t execute the line directly ` \
   HIST_VERIFY \
+  `# add to history-file ` \
+  APPEND_HISTORY \
   `# Any parameter that is set to the absolute name of a directory immediately becomes a name for that directory in the usual form ` \
   AUTO_NAME_DIRS \
   `# Make cd push the old directory onto the directory stack ` \
