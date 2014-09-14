@@ -1,4 +1,6 @@
-_load_z() {
+
+_load_z()
+{
   source $1/z.sh
 }
 

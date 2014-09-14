@@ -1,4 +1,6 @@
-function virtualenv_prompt_info(){
+
+virtualenv_prompt_info()
+{
   if [[ -n $VIRTUAL_ENV ]]; then
     printf "%s[%s] " "%{${fg[yellow]}%}" ${${VIRTUAL_ENV}:t}
   fi

@@ -1,6 +1,7 @@
 # web_search from terminal
 
-function web_search() {
+web_search()
+{
   # get the open command
   local open_cmd
   if [[ "$OSTYPE" = darwin* ]]; then
@@ -10,8 +11,7 @@ function web_search() {
   fi
 
   # check whether the search engine is supported
-  if [[ ! $1 =~ '(google|bing|yahoo|duckduckgo)' ]];
-  then
+  if [[ ! $1 =~ '(google|bing|yahoo|duckduckgo)' ]]; then
     echo "Search engine $1 not supported."
     return 1
   fi
@@ -23,12 +23,14 @@ function web_search() {
     $open_cmd "$url"
     return
   fi
+
   if [[ $1 == 'duckduckgo' ]]; then
-  #slightly different search syntax for DDG
+    #slightly different search syntax for DDG
     url="${url}/?q="
   else
     url="${url}/search?q="
   fi
+
   shift   # shift out $1
 
   while [[ $# -gt 0 ]]; do
@@ -37,8 +39,8 @@ function web_search() {
   done
 
   url="${url%?}" # remove the last '+'
-  nohup $open_cmd "$url" 
- 	rm nohup.out	
+  nohup $open_cmd "$url"
+ 	rm nohup.out
 }
 
 
@@ -53,3 +55,4 @@ alias youtube='web_search duckduckgo \!yt'
 alias map='web_search duckduckgo \!m'
 alias image='web_search duckduckgo \!i'
 alias ducky='web_search duckduckgo \!'
+

@@ -1,7 +1,7 @@
 # frontend from terminal
 
-function frontend() {
-
+frontend()
+{
   # get the open command
   local open_cmd
   if [[ $(uname -s) == 'Darwin' ]]; then
@@ -110,7 +110,6 @@ function frontend() {
   echo "$url"
 
   $open_cmd "$url"
-
 }
 
 # javascript
@@ -149,3 +148,4 @@ alias smacss='frontend smacss'
 alias angularjs='frontend angularjs'
 alias reactjs='frontend reactjs'
 alias emberjs='frontend emberjs'
+

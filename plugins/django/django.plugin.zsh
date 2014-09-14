@@ -1,6 +1,7 @@
 #compdef manage.py
 
 typeset -ga nul_args
+
 nul_args=(
   '--settings=-[the Python path to a settings module.]:file:_files'
   '--pythonpath=-[a directory to add to the Python path.]::directory:_directories'
@@ -9,18 +10,21 @@ nul_args=(
   {-h,--help}'[show this help message and exit.]'
 )
 
-_managepy-adminindex(){
+_managepy-adminindex()
+{
   _arguments -s : \
     $nul_args \
     '*::directory:_directories' && ret=0
 }
 
-_managepy-createcachetable(){
+_managepy-createcachetable()
+{
   _arguments -s : \
     $nul_args && ret=0
 }
 
-_managepy-collectstatic(){
+_managepy-collectstatic()
+{
   _arguments -s : \
     '--link=-[Create a symbolic link to each file instead of copying.]:' \
     '--noinput=-[Do NOT prompt the user for input of any kind.]:' \
@@ -33,17 +37,20 @@ _managepy-collectstatic(){
     $nul_args && ret=0
 }
 
-_managepy-dbshell(){
+_managepy-dbshell()
+{
   _arguments -s : \
     $nul_args && ret=0
 }
 
-_managepy-diffsettings(){
+_managepy-diffsettings()
+{
   _arguments -s : \
     $nul_args && ret=0
 }
 
-_managepy-dumpdata(){
+_managepy-dumpdata()
+{
   _arguments -s : \
     '--format=-[specifies the output serialization format for fixtures.]:format:(json yaml xml)' \
     '--indent=-[specifies the indent level to use when pretty-printing output.]:' \
@@ -51,51 +58,58 @@ _managepy-dumpdata(){
     '*::appname:_applist' && ret=0
 }
 
-_managepy-flush(){
+_managepy-flush()
+{
   _arguments -s : \
     '--verbosity=-[verbosity level; 0=minimal output, 1=normal output, 2=all output.]:Verbosity:((0\:minimal 1\:normal 2\:all))' \
     '--noinput[tells Django to NOT prompt the user for input of any kind.]' \
     $nul_args && ret=0
 }
 
-_managepy-help(){
+_managepy-help()
+{
   _arguments -s : \
     '*:command:_managepy_cmds' \
     $nul_args && ret=0
 }
 
-_managepy_cmds(){
-    local line
-    local -a cmd
-    _call_program help-command ./manage.py help \
-      |& sed -n '/^ /s/[(), ]/ /gp' \
-      | while read -A line; do cmd=($line $cmd) done
-    _describe -t managepy-command 'manage.py command' cmd
+_managepy_cmds()
+{
+  local line
+  local -a cmd
+  _call_program help-command ./manage.py help \
+    |& sed -n '/^ /s/[(), ]/ /gp' \
+    | while read -A line; do cmd=($line $cmd) done
+  _describe -t managepy-command 'manage.py command' cmd
 }
 
-_managepy-inspectdb(){
+_managepy-inspectdb()
+{
   _arguments -s : \
     $nul_args && ret=0
 }
 
-_managepy-loaddata(){
+_managepy-loaddata()
+{
   _arguments -s : \
     '--verbosity=-[verbosity level; 0=minimal output, 1=normal output, 2=all output.]:Verbosity:((0\:minimal 1\:normal 2\:all))' \
     '*::file:_files' \
     $nul_args && ret=0
 }
 
-_managepy-reset(){
+_managepy-reset()
+{
   _arguments -s : \
     '--noinput[tells Django to NOT prompt the user for input of any kind.]' \
     '*::appname:_applist' \
     $nul_args && ret=0
 }
 
-_managepy-runfcgi(){
+_managepy-runfcgi()
+{
   local state
-  
   local fcgi_opts
+
   fcgi_opts=(
     'protocol[fcgi, scgi, ajp, ... (default fcgi)]:protocol:(fcgi scgi ajp)'
     'host[hostname to listen on..]:'
@@ -112,45 +126,49 @@ _managepy-runfcgi(){
     'outlog[write stdout to this file.]:file:_files'
     'errlog[write stderr to this file.]:file:_files'
   )
-  
+
   _arguments -s : \
     $nul_args \
     '*: :_values "FCGI Setting" $fcgi_opts' && ret=0
 }
 
-_managepy-runserver(){
+_managepy-runserver()
+{
   _arguments -s : \
     '--noreload[tells Django to NOT use the auto-reloader.]' \
     '--adminmedia[specifies the directory from which to serve admin media.]:directory:_files' \
     $nul_args && ret=0
 }
 
-_managepy-shell(){
+_managepy-shell()
+{
   _arguments -s : \
     '--plain[tells Django to use plain Python, not IPython.]' \
     $nul_args && ret=0
 }
 
-_managepy-sql(){}
-_managepy-sqlall(){}
-_managepy-sqlclear(){}
-_managepy-sqlcustom(){}
-_managepy-sqlflush(){}
-_managepy-sqlindexes(){}
-_managepy-sqlinitialdata(){}
-_managepy-sqlreset(){}
-_managepy-sqlsequencereset(){}
-_managepy-startapp(){}
-_managepy-startproject(){}
+_managepy-sql() { }
+_managepy-sqlall() { }
+_managepy-sqlclear() { }
+_managepy-sqlcustom() { }
+_managepy-sqlflush() { }
+_managepy-sqlindexes() { }
+_managepy-sqlinitialdata() { }
+_managepy-sqlreset() { }
+_managepy-sqlsequencereset() { }
+_managepy-startapp() { }
+_managepy-startproject() { }
 
-_managepy-syncdb() {
+_managepy-syncdb()
+{
   _arguments -s : \
     '--verbosity=-[verbosity level; 0=minimal output, 1=normal output, 2=all output.]:Verbosity:((0\:minimal 1\:normal 2\:all))' \
     '--noinput[tells Django to NOT prompt the user for input of any kind.]' \
     $nul_args && ret=0
 }
 
-_managepy-test() {
+_managepy-test()
+{
   _arguments -s : \
     '--verbosity=-[verbosity level; 0=minimal output, 1=normal output, 2=all output.]:Verbosity:((0\:minimal 1\:normal 2\:all))' \
     '--noinput[tells Django to NOT prompt the user for input of any kind.]' \
@@ -158,7 +176,8 @@ _managepy-test() {
     $nul_args && ret=0
 }
 
-_managepy-testserver() {
+_managepy-testserver()
+{
   _arguments -s : \
     '--verbosity=-[verbosity level; 0=minimal output, 1=normal output, 2=all output.]:Verbosity:((0\:minimal 1\:normal 2\:all))' \
     '--addrport=-[port number or ipaddr:port to run the server on.]' \
@@ -166,14 +185,16 @@ _managepy-testserver() {
     $nul_args && ret=0
 }
 
-_managepy-validate() {
+_managepy-validate()
+{
   _arguments -s : \
     $nul_args && ret=0
 }
 
-_managepy-commands() {
+_managepy-commands()
+{
   local -a commands
-  
+
   commands=(
     'adminindex:prints the admin-index template snippet for the given app name(s).'
     'createcachetable:creates the table needed to use the SQL cache backend.'
@@ -205,13 +226,15 @@ _managepy-commands() {
     'testserver:Runs a development server with data from the given fixture(s).'
     'validate:Validates all installed models.'
   )
-  
+
   _describe -t commands 'manage.py command' commands && ret=0
 }
 
-_applist() {
+_applist()
+{
   local line
   local -a apps
+
   _call_program help-command "python -c \"import os.path as op, re, django.conf, sys;\\
                                           bn=op.basename(op.abspath(op.curdir));[sys\\
                                           .stdout.write(str(re.sub(r'^%s\.(.*?)$' %
@@ -221,9 +244,10 @@ _applist() {
   _values 'Application' $apps && ret=0
 }
 
-_managepy() {
+_managepy()
+{
   local curcontext=$curcontext ret=1
-  
+
   if ((CURRENT == 2)); then
     _managepy-commands
   else

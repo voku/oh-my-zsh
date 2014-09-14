@@ -12,20 +12,25 @@ if [[ $? -eq 0 ]]; then
 
   # Internal: Print ruby version details, if it's currently
   # active etc.
-  function _rbfu_rubies_print() {
+  _rbfu_rubies_print()
+  {
     local rb rb_out
+
     rb=$(basename $1)
     rb_out="$rb"
     [[ -h $1 ]] && rb_out="$rb_out${fg[green]}@${reset_color}"
     [[ "x$rb" == "x$2" ]] && rb_out="${fg[red]}$rb_out ${fg[red]}*${reset_color}"
+
     echo $rb_out
   }
 
   # Public: Provide a list with all available rubies, this basically depends
   # on `ls -1` and .rfbu/rubies. Highlights the currently active ruby version
   # and aliases.
-  function rbfu-rubies() {
+  rbfu-rubies()
+  {
     local rbfu_dir active_rb
+
     rbfu_dir=$RBFU_RUBIES
     active_rb=$RBFU_RUBY_VERSION
     [[ -z "$rbfu_dir" ]] && rbfu_dir="${HOME}/.rbfu/rubies"

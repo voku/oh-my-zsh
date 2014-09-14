@@ -1,5 +1,7 @@
-function wake() {
+
+wake() {
   local config_file="$HOME/.wakeonlan/$1"
+
   if [[ ! -f "$config_file" ]]; then
     echo "ERROR: There is no configuration file at \"$config_file\"."
     return 1

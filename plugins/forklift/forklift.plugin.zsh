@@ -12,16 +12,20 @@
 # app window.
 #
 # https://gist.github.com/3313481
-function fl {
+fl
+{
+  local dir_tmp pwd_tmp
+
   if [ ! -z "$1" ]; then
-    DIR=$1
-    if [ ! -d "$DIR" ]; then
-      DIR=$(dirname $DIR)
+    dir_tmp=$1
+    if [ ! -d "$dir_tmp" ]; then
+      dir_tmp=$(dirname $dir_tmp)
     fi
-    if [ "$DIR" != "." ]; then
-      PWD=`cd "$DIR";pwd`
+    if [ "$dir_tmp" != "." ]; then
+      pwd_tmp=`cd "$dir_tmp";pwd`
     fi
   fi
+
   osascript 2>&1 1>/dev/null <<END
 
     try
@@ -60,7 +64,7 @@ function fl {
         end try
         keystroke "g" using {command down, shift down}
         tell sheet 1 of topWindow
-          set value of text field 1 to "$PWD"
+          set value of text field 1 to "$pwd_tmp"
           keystroke return
         end tell
       end tell

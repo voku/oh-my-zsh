@@ -1,5 +1,8 @@
-_git_remote_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null)
+
+_git_remote_branch()
+{
+  local ref=$(git symbolic-ref HEAD 2> /dev/null)
+
   if [[ -n $ref ]]; then
     if (( CURRENT == 2 )); then
       # first arg: operation
@@ -16,4 +19,5 @@ _git_remote_branch() {
     _files
   fi
 }
+
 compdef _git_remote_branch grb

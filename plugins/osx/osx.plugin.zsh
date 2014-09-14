@@ -5,8 +5,10 @@
 #       VERSION:  1.1.0
 # ------------------------------------------------------------------------------
 
-function tab() {
+function tab()
+{
   local command="cd \\\"$PWD\\\"; clear; "
+
   (( $# > 0 )) && command="${command}; $*"
 
   the_app=$(
@@ -42,7 +44,8 @@ EOF
   }
 }
 
-function vsplit_tab() {
+function vsplit_tab()
+{
   local command="cd \\\"$PWD\\\""
   (( $# > 0 )) && command="${command}; $*"
 
@@ -71,7 +74,8 @@ EOF
   }
 }
 
-function split_tab() {
+function split_tab()
+{
   local command="cd \\\"$PWD\\\""
   (( $# > 0 )) && command="${command}; $*"
 
@@ -100,7 +104,8 @@ EOF
   }
 }
 
-function pfd() {
+function pfd()
+{
   osascript 2>/dev/null <<EOF
     tell application "Finder"
       return POSIX path of (target of window 1 as alias)
@@ -108,7 +113,8 @@ function pfd() {
 EOF
 }
 
-function pfs() {
+function pfs()
+{
   osascript 2>/dev/null <<EOF
     set output to ""
     tell application "Finder" to set the_selection to selection
@@ -121,25 +127,31 @@ function pfs() {
 EOF
 }
 
-function cdf() {
+cdf()
+{
   cd "$(pfd)"
 }
 
-function pushdf() {
+pushdf()
+{
   pushd "$(pfd)"
 }
 
-function quick-look() {
+quick-look()
+{
   (( $# > 0 )) && qlmanage -p $* &>/dev/null &
 }
 
-function man-preview() {
+man-preview()
+{
   man -t "$@" | open -f -a Preview
 }
 
-function trash() {
+trash()
+{
   local trash_dir="${HOME}/.Trash"
   local temp_ifs=$IFS
+
   IFS=$'\n'
   for item in "$@"; do
     if [[ -e "$item" ]]; then
@@ -154,12 +166,14 @@ function trash() {
   IFS=$temp_ifs
 }
 
-function vncviewer() {
+vncviewer()
+{
   open vnc://$@
 }
 
 # iTunes control function
-function itunes() {
+itunes()
+{
 	local opt=$1
 	shift
 	case "$opt" in
@@ -194,3 +208,4 @@ function itunes() {
 	esac
 	osascript -e "tell application \"iTunes\" to $opt"
 }
+

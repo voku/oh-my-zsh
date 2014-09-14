@@ -7,8 +7,7 @@ alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
 
 # Only run if tmux is actually installed
-if which tmux &> /dev/null
-	then
+if which tmux &> /dev/null; then
 	# Configuration variables
 	#
 	# Automatically start tmux
@@ -38,16 +37,14 @@ if which tmux &> /dev/null
 	local zsh_tmux_plugin_path="$(cd "$(dirname "$0")" && pwd)"
 
 	# Determine if the terminal supports 256 colors
-	if [[ `tput colors` == "256" ]]
-	then
+	if [[ `tput colors` == "256" ]]; then
 		export ZSH_TMUX_TERM=$ZSH_TMUX_FIXTERM_WITH_256COLOR
 	else
 		export ZSH_TMUX_TERM=$ZSH_TMUX_FIXTERM_WITHOUT_256COLOR
 	fi
 
 	# Set the correct local config file to use.
-    if [[ "$ZSH_TMUX_ITERM2" == "false" ]] && [[ -f $HOME/.tmux.conf || -h $HOME/.tmux.conf ]]
-	then
+  if [[ "$ZSH_TMUX_ITERM2" == "false" ]] && [[ -f $HOME/.tmux.conf || -h $HOME/.tmux.conf ]]; then
 		#use this when they have a ~/.tmux.conf
 		export _ZSH_TMUX_FIXED_CONFIG="$zsh_tmux_plugin_path/tmux.extra.conf"
 	else
@@ -59,12 +56,10 @@ if which tmux &> /dev/null
 	function _zsh_tmux_plugin_run()
 	{
 		# We have other arguments, just run them
-		if [[ -n "$@" ]]
-		then
+		if [[ -n "$@" ]]; then
 			\tmux $@
 		# Try to connect to an existing session.
-		elif [[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]]
-		then
+		elif [[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]]; then
 			\tmux `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` attach || \tmux `[[ "$ZSH_TMUX_ITERM2" == "true" ]] && echo '-CC '` `[[ "$ZSH_TMUX_FIXTERM" == "true" ]] && echo '-f '$_ZSH_TMUX_FIXED_CONFIG` new-session
 			[[ "$ZSH_TMUX_AUTOQUIT" == "true" ]] && exit
 		# Just run tmux, fixing the TERM variable if requested.
@@ -81,11 +76,9 @@ if which tmux &> /dev/null
 	alias tmux=_zsh_tmux_plugin_run
 
 	# Autostart if not already in tmux and enabled.
-	if [[ ! -n "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" ]]
-	then
+	if [[ ! -n "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" ]]; then
 		# Actually don't autostart if we already did and multiple autostarts are disabled.
-		if [[ "$ZSH_TMUX_AUTOSTART_ONCE" == "false" || "$ZSH_TMUX_AUTOSTARTED" != "true" ]]
-		then
+		if [[ "$ZSH_TMUX_AUTOSTART_ONCE" == "false" || "$ZSH_TMUX_AUTOSTARTED" != "true" ]]; then
 			export ZSH_TMUX_AUTOSTARTED=true
 			_zsh_tmux_plugin_run
 		fi
@@ -93,3 +86,4 @@ if which tmux &> /dev/null
 else
 	print "zsh tmux plugin: tmux not found. Please install tmux before using this plugin."
 fi
+

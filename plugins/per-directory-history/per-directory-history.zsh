@@ -32,7 +32,7 @@
 #
 # Copyright (c) 2012 Jim Hester
 #
-# This software is provided 'as-is', without any express or implied warranty. 
+# This software is provided 'as-is', without any express or implied warranty.
 # In no event will the authors be held liable for any damages arising from the
 # use of this software.
 #
@@ -62,7 +62,8 @@
 # toggle global/directory history used for searching - ctrl-G by default
 #-------------------------------------------------------------------------------
 
-function per-directory-history-toggle-history() {
+function per-directory-history-toggle-history()
+{
   if [[ $_per_directory_history_is_global == true ]]; then
     _per-directory-history-set-directory-history
     print -n "\nusing local history"
@@ -84,7 +85,8 @@ bindkey '^G' per-directory-history-toggle-history
 
 _per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
 
-function _per-directory-history-change-directory() {
+function _per-directory-history-change-directory()
+{
   _per_directory_history_directory="$HISTORY_BASE${PWD:A}/history"
   mkdir -p ${_per_directory_history_directory:h}
   if [[ $_per_directory_history_is_global == false ]]; then
@@ -107,13 +109,15 @@ function _per-directory-history-change-directory() {
   fi
 }
 
-function _per-directory-history-addhistory() {
+function _per-directory-history-addhistory()
+{
   print -Sr -- ${1%%$'\n'}
   fc -p $_per_directory_history_directory
 }
 
 
-function _per-directory-history-set-directory-history() {
+function _per-directory-history-set-directory-history()
+{
   if [[ $_per_directory_history_is_global == true ]]; then
     fc -AI $HISTFILE
     local original_histsize=$HISTSIZE
@@ -125,7 +129,9 @@ function _per-directory-history-set-directory-history() {
   fi
   _per_directory_history_is_global=false
 }
-function _per-directory-history-set-global-history() {
+
+function _per-directory-history-set-global-history()
+{
   if [[ $_per_directory_history_is_global == false ]]; then
     fc -AI $_per_directory_history_directory
     local original_histsize=$HISTSIZE
@@ -138,7 +144,6 @@ function _per-directory-history-set-global-history() {
   _per_directory_history_is_global=true
 }
 
-
 #add functions to the exec list for chpwd and zshaddhistory
 chpwd_functions=(${chpwd_functions[@]} "_per-directory-history-change-directory")
 zshaddhistory_functions=(${zshaddhistory_functions[@]} "_per-directory-history-addhistory")
@@ -147,3 +152,4 @@ zshaddhistory_functions=(${zshaddhistory_functions[@]} "_per-directory-history-a
 mkdir -p ${_per_directory_history_directory:h}
 _per_directory_history_is_global=true
 _per-directory-history-set-directory-history
+

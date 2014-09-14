@@ -1,4 +1,6 @@
-# Aliases
+
+# aliases / functions
+
 alias g='git'
 compdef g=git
 alias gst='git status'
@@ -120,17 +122,23 @@ compdef git-svn-dcommit-push=git
 
 alias gsr='git svn rebase'
 alias gsd='git svn dcommit'
+
 #
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 #
-function current_branch() {
+current_branch()
+{
+  local ref
+
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
 }
 
-function current_repository() {
+current_repository()
+{
+  local ref
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo $(git remote -v | cut -d':' -f 2)
@@ -147,7 +155,8 @@ alias ggpnp='git pull origin $(current_branch) && git push origin $(current_bran
 compdef ggpnp=git
 
 # Pretty log messages
-function _git_log_prettily(){
+_git_log_prettily()
+{
   if ! [ -z $1 ]; then
     git log --pretty=$1
   fi
@@ -160,7 +169,8 @@ compdef _git glp=git-log
 # When you want to go back to work, just unwip it
 #
 # This function return a warning if the current branch is a wip
-function work_in_progress() {
+work_in_progress()
+{
   if $(git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"); then
     echo "WIP!!"
   fi
@@ -174,6 +184,4 @@ alias gignore='git update-index --assume-unchanged'
 alias gunignore='git update-index --no-assume-unchanged'
 # list temporarily ignored files
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
-
-
 

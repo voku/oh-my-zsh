@@ -1,3 +1,4 @@
+
 if [ $commands[autojump] ]; then # check if autojump is installed
   if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
     . $HOME/.autojump/etc/profile.d/autojump.zsh
@@ -15,3 +16,4 @@ if [ $commands[autojump] ]; then # check if autojump is installed
     . `brew --prefix`/etc/autojump.zsh
   fi
 fi
+

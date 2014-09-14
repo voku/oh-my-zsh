@@ -2,6 +2,8 @@
 # Use with caution
 #
 
+# TODO: remove more default aliases that are already in "lib" 
+
 # ls, the common ones I use a lot shortened for rapid fire usage
 alias l='ls -lFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
@@ -15,16 +17,9 @@ alias lrt='ls -1Fcrt'
 
 alias zshrc='vim ~/.zshrc' # Quick access to the ~/.zshrc file
 
-alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 
 alias t='tail -f'
-
-# because typing 'cd' is A LOT of work!!
-alias ..='cd ../'
-alias ...='cd ../../'
-alias ....='cd ../../../'
-alias .....='cd ../../../../'
 
 # Command line head / tail shortcuts
 alias -g H='| head'

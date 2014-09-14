@@ -19,7 +19,8 @@
 # Will Detect if a app does not exist in pow and print a (slightly) helpful
 # error message
 
-rack_root(){
+rack_root()
+{
   setopt chaselinks
   local orgdir="$(pwd)"
   local basedir="$(pwd)"
@@ -35,16 +36,18 @@ rack_root(){
   echo $basedir
 }
 
-rack_root_detect(){
+rack_root_detect()
+{
   basedir=$(rack_root)
   echo `basename $basedir | sed -E "s/.(com|net|org)//"`
 }
 
-kapow(){
+kapow()
+{
   local vhost=$1
+
   [ ! -n "$vhost" ] && vhost=$(rack_root_detect)
-  if [ ! -h ~/.pow/$vhost ]
-  then
+  if [ ! -h ~/.pow/$vhost ]; then
     echo "pow: This domain isn’t set up yet. Symlink your application to ${vhost} first."
     return 1
   fi
@@ -55,26 +58,29 @@ kapow(){
 }
 compctl -W ~/.pow -/ kapow
 
-powit(){
+powit()
+{
   local basedir="$(pwd)"
   local vhost=$1
+
   [ ! -n "$vhost" ] && vhost=$(rack_root_detect)
-  if [ ! -h ~/.pow/$vhost ]
-  then
+  if [ ! -h ~/.pow/$vhost ]; then
     echo "pow: Symlinking your app with pow. ${vhost}"
     [ ! -d ~/.pow/${vhost} ] && ln -s "$basedir" ~/.pow/$vhost
     return 1
   fi
 }
 
-powed(){
+powed()
+{
   local basedir="$(rack_root)"
   find ~/.pow/ -type l -lname "*$basedir*" -exec basename {}'.dev' \;
 }
 
 # Restart pow process
 # taken from http://www.matthewratzloff.com/blog/2011/12/23/restarting-pow-when-dns-stops-responding
-repow(){
+repow()
+{
   lsof | grep 20560 | awk '{print $2}' | xargs kill -9
   launchctl unload ~/Library/LaunchAgents/cx.pow.powd.plist
   launchctl load ~/Library/LaunchAgents/cx.pow.powd.plist
@@ -83,3 +89,4 @@ repow(){
 
 # View the standard out (puts) from any pow app
 alias kaput="tail -f ~/Library/Logs/Pow/apps/*"
+

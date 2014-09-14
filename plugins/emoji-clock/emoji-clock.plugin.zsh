@@ -7,9 +7,10 @@
 #       VERSION: 1.0.0
 # -----------------------------------------------------------------------------
 
-function emoji-clock() {
-  hour=$(date -v '+15M' '+%I')
-  minutes=$(date -v '+15M' '+%M')
+function emoji-clock()
+{
+  local hour=$(date -v '+15M' '+%I')
+  local minutes=$(date -v '+15M' '+%M')
   case $hour in
     01) clock="🕐"; [ $minutes -ge 30 ] && clock="🕜";;
     02) clock="🕑"; [ $minutes -ge 30 ] && clock="🕝";;
@@ -25,5 +26,6 @@ function emoji-clock() {
     12) clock="🕛"; [ $minutes -ge 30 ] && clock="🕧";;
      *) clock="⌛";;
   esac
+
   echo $clock
 }

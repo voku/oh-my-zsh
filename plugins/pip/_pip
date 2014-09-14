@@ -3,7 +3,8 @@
 
 # pip zsh completion, based on homebrew completion
 
-_pip_all() {
+_pip_all()
+{
   # we cache the list of packages (originally from the macports plugin)
   if (( ! $+piplist )); then
       zsh-pip-cache-packages
@@ -11,7 +12,8 @@ _pip_all() {
   fi
 }
 
-_pip_installed() {
+_pip_installed()
+{
   installed_pkgs=(`pip freeze | cut -d '=' -f 1`)
 }
 
@@ -82,3 +84,4 @@ case "$words[1]" in
     _pip_installed
     _wanted installed_pkgs expl 'installed packages' compadd -a installed_pkgs ;;
 esac
+

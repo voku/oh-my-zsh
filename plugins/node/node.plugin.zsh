@@ -1,6 +1,8 @@
 # Open the node api for your current version to the optional section.
 # TODO: Make the section part easier to use.
-function node-docs {
+
+node-docs
+{
   # get the open command
   local open_cmd
   if [[ "$OSTYPE" = darwin* ]]; then

@@ -4,7 +4,8 @@
 # TODO: --track, -t, --master, and -m should take remote branches, I guess.
 # NOTE: --master is undocumented.
 # NOTE: --fetch is undocumented.
-_git-remote () {
+_git-remote ()
+{
   local curcontext=$curcontext state line
   declare -A opt_args
 
@@ -29,7 +30,7 @@ _git-remote () {
         )
 
       _describe -t commands 'sub-command' commands && ret=0
-      ;;
+    ;;
     (options)
       case $line[1] in
         (add)
@@ -39,26 +40,26 @@ _git-remote () {
             '(--fetch -f)'{--fetch,-f}'[run git-fetch on the new remote after it has been created]' \
             ':branch name:__git_remotes' \
             ':url:_urls' && ret=0
-          ;;
+        ;;
         (show)
           _arguments \
             '-n[do not contact the remote for a list of branches]' \
             ':remote:__git_remotes' && ret=0
-          ;;
+        ;;
         (prune)
           _arguments \
             '(--dry-run -n)'{-n,--dry-run}'[do not actually prune, only list what would be done]' \
             ':remote:__git_remotes' && ret=0
-          ;;
+        ;;
         (update)
           __git_remote-groups && ret=0
-          ;;
+        ;;
         (rm)
           __git_remotes && ret=0
-          ;;
+        ;;
         (rename)
           __git_remotes && ret=0
-          ;;
+        ;;
         (set-url)
           _arguments \
             '*--push[manipulate push URLs]' \
@@ -66,9 +67,8 @@ _git-remote () {
             '(--delete)--delete[delete URLs]' \
             ':branch name:__git_remotes' \
             ':url:_urls' && ret=0
-          ;;
-          
+        ;;
       esac
-      ;;
+    ;;
   esac
 }

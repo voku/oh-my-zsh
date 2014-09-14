@@ -136,3 +136,4 @@ alias wpwd='wp widget delete'
 alias wpwl='wp widget list'
 alias wpwm='wp widget move'
 alias wpwu='wp widget update'
+

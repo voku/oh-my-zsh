@@ -1,7 +1,7 @@
-## 
-#   Navigate directory history using ALT-LEFT and ALT-RIGHT. ALT-LEFT moves back to directories 
+##
+#   Navigate directory history using ALT-LEFT and ALT-RIGHT. ALT-LEFT moves back to directories
 #   that the user has changed to in the past, and ALT-RIGHT undoes ALT-LEFT.
-# 
+#
 
 dirhistory_past=(`pwd`)
 dirhistory_future=()
@@ -10,46 +10,53 @@ export dirhistory_future
 
 export DIRHISTORY_SIZE=30
 
-# Pop the last element of dirhistory_past. 
-# Pass the name of the variable to return the result in. 
+# Pop the last element of dirhistory_past.
+# Pass the name of the variable to return the result in.
 # Returns the element if the array was not empty,
 # otherwise returns empty string.
-function pop_past() {
+pop_past()
+{
   eval "$1='$dirhistory_past[$#dirhistory_past]'"
   if [[ $#dirhistory_past -gt 0 ]]; then
     dirhistory_past[$#dirhistory_past]=()
   fi
 }
 
-function pop_future() {
+pop_future()
+{
   eval "$1='$dirhistory_future[$#dirhistory_future]'"
   if [[ $#dirhistory_future -gt 0 ]]; then
     dirhistory_future[$#dirhistory_future]=()
   fi
 }
 
-# Push a new element onto the end of dirhistory_past. If the size of the array 
+# Push a new element onto the end of dirhistory_past. If the size of the array
 # is >= DIRHISTORY_SIZE, the array is shifted
-function push_past() {
+push_past()
+{
   if [[ $#dirhistory_past -ge $DIRHISTORY_SIZE ]]; then
     shift dirhistory_past
   fi
+
   if [[ $#dirhistory_past -eq 0 || $dirhistory_past[$#dirhistory_past] != "$1" ]]; then
     dirhistory_past+=($1)
   fi
 }
 
-function push_future() {
+push_future()
+{
   if [[ $#dirhistory_future -ge $DIRHISTORY_SIZE ]]; then
     shift dirhistory_future
   fi
+
   if [[ $#dirhistory_future -eq 0 || $dirhistory_futuret[$#dirhistory_future] != "$1" ]]; then
     dirhistory_future+=($1)
   fi
 }
 
 # Called by zsh when directory changes
-function chpwd() {
+chpwd()
+{
   push_past `pwd`
   # If DIRHISTORY_CD is not set...
   if [[ -z "${DIRHISTORY_CD+x}" ]]; then
@@ -58,19 +65,21 @@ function chpwd() {
   fi
 }
 
-function dirhistory_cd(){
+dirhistory_cd()
+{
   DIRHISTORY_CD="1"
   cd $1
   unset DIRHISTORY_CD
 }
 
 # Move backward in directory history
-function dirhistory_back() {
+dirhistory_back()
+{
   local cw=""
   local d=""
   # Last element in dirhistory_past is the cwd.
 
-  pop_past cw 
+  pop_past cw
   if [[ "" == "$cw" ]]; then
     # Someone overwrote our variable. Recover it.
     dirhistory_past=(`pwd`)
@@ -88,7 +97,8 @@ function dirhistory_back() {
 
 
 # Move forward in directory history
-function dirhistory_forward() {
+dirhistory_forward()
+{
   local d=""
 
   pop_future d
@@ -100,15 +110,17 @@ function dirhistory_forward() {
 
 
 # Bind keys to history navigation
-function dirhistory_zle_dirhistory_back() {
-  # Erase current line in buffer
+dirhistory_zle_dirhistory_back()
+{
+  # erase current line in buffer
   zle kill-buffer
-  dirhistory_back 
+  dirhistory_back
   zle accept-line
 }
 
-function dirhistory_zle_dirhistory_future() {
-  # Erase current line in buffer
+dirhistory_zle_dirhistory_future()
+{
+  # erase current line in buffer
   zle kill-buffer
   dirhistory_forward
   zle accept-line
@@ -128,5 +140,4 @@ bindkey "\e[3C" dirhistory_zle_dirhistory_future
 bindkey "\e[1;3C" dirhistory_zle_dirhistory_future
 bindkey "\e\e[C" dirhistory_zle_dirhistory_future
 bindkey "\eO3C" dirhistory_zle_dirhistory_future
-
 

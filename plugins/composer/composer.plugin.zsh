@@ -6,20 +6,25 @@
 # ------------------------------------------------------------------------------
 
 # Composer basic command completion
-_composer_get_command_list () {
+_composer_get_command_list()
+{
 	composer --no-ansi | sed "1,/Available commands/d" | awk '/^  [a-z]+/ { print $1 }'
 }
 
-_composer_get_required_list () {
-    composer show -s --no-ansi | sed '1,/requires/d' | awk 'NF > 0 && !/^requires \(dev\)/{ print $1 }'
+_composer_get_required_list()
+{
+  composer show -s --no-ansi | sed '1,/requires/d' | awk 'NF > 0 && !/^requires \(dev\)/{ print $1 }'
 }
 
-_composer () {
+_composer ()
+{
   local curcontext="$curcontext" state line
   typeset -A opt_args
+
   _arguments \
     '1: :->command'\
     '*: :->args'
+
   if [ -f composer.json ]; then
     case $state in
       command)
@@ -49,3 +54,4 @@ alias cget='curl -s https://getcomposer.org/installer | php'
 
 # Add Composer's global binaries to PATH
 export PATH=$PATH:~/.composer/vendor/bin
+

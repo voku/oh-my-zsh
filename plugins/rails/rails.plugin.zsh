@@ -1,4 +1,6 @@
-function _rails_command () {
+
+_rails_command()
+{
   if [ -e "bin/rails" ]; then
     bin/rails $@
   elif [ -e "script/rails" ]; then
@@ -10,7 +12,8 @@ function _rails_command () {
   fi
 }
 
-function _rake_command () {
+_rake_command()
+{
   if [ -e "bin/rake" ]; then
     bin/rake $@
   else
@@ -67,6 +70,8 @@ alias ssp='ruby script/spec'
 alias sc='ruby script/console'
 alias sd='ruby script/server --debugger'
 
-function remote_console() {
+remote_console()
+{
   /usr/bin/env ssh $1 "( cd $2 && ruby script/console production )"
 }
+

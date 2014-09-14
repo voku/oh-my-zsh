@@ -6,6 +6,7 @@
 #
 # @github.com/mfaerevaag/wd
 
-wd() {
-    . $ZSH/plugins/wd/wd.sh
+wd()
+{
+  . $ZSH/plugins/wd/wd.sh
 }
