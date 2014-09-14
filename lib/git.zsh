@@ -95,7 +95,8 @@ git_prompt_long_sha()
 }
 
 # Get the status of the working tree
-git_prompt_status() {
+git_prompt_status()
+{
   # info: we can't use local-var here
   INDEX=$(command git status --porcelain -b 2> /dev/null)
   STATUS=""
@@ -171,6 +172,7 @@ git_compare_version()
       return 0
     fi
   done
+
   echo 1
 }
 
@@ -178,5 +180,4 @@ git_compare_version()
 POST_1_7_2_GIT=$(git_compare_version "1.7.2")
 #clean up the namespace slightly by removing the checker function
 unset -f git_compare_version
-
 
