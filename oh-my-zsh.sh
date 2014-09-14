@@ -17,7 +17,7 @@ done
 # Set ZSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
 if [[ -z "$ZSH_CUSTOM" ]]; then
-    ZSH_CUSTOM="$ZSH/custom"
+  ZSH_CUSTOM="$ZSH/custom"
 fi
 
 
@@ -77,6 +77,12 @@ if [ "$ZSH_THEME" = "random" ]; then
   RANDOM_THEME=${themes[$N]}
   source "$RANDOM_THEME"
   echo "[oh-my-zsh] Random theme '$RANDOM_THEME' loaded..."
+
+  unset themes
+  unset RANDOM_THEME
+  unset RANDOM
+  unset N
+
 else
   if [ ! "$ZSH_THEME" = ""  ]; then
     if [ -f "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme" ]; then
