@@ -46,27 +46,7 @@ unsetopt \
   AUTO_CD
 
 
-############# AUTOLOAD ######################################
-
-# TODO: move this to e.g.: ".zsh_autoload"
-
-autoload -Uz promptinit
-promptinit
-prompt walters
-
-autoload colors ; colors
-autoload -Uz compinit
-compinit -C
-
-
 ############# ZSTYLE ######################################
-
-WORDCHARS=''
-
-zmodload -i zsh/complist
-
-compdef pkill=kill
-compdef pkill=killall
 
 # Fuzzy matching of completions for when you mistype them:
 zstyle ':completion:*' completer _complete _approximate
@@ -126,7 +106,6 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*:*:default' force-list always
 
 # highlight matching part of available completions
-autoload -U colors ; colors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors  'reply=( "=(#b)(*$PREFIX)(?)*=00=$color[green]=$color[bg-green]" )'
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %P Lines: %m
