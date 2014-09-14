@@ -1,32 +1,32 @@
-# Check for updates on initial load...
+# first check for updates on initial load...
 if [ "$DISABLE_AUTO_UPDATE" != "true" ]; then
   env ZSH=$ZSH DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT zsh -f $ZSH/tools/check_for_upgrade.sh
 fi
 
-# Initializes Oh My Zsh
+# initializes Oh My Zsh
 
 # add a function path
 fpath=($ZSH/functions $ZSH/completions $fpath)
 
-# Load all of the config files in ~/oh-my-zsh that end in .zsh
-# TIP: Add files you don't want in git to .gitignore
+# load all of the config files in ~/oh-my-zsh that end in .zsh
 for config_file ($ZSH/lib/*.zsh); do
   source $config_file
 done
 
-# Set ZSH_CUSTOM to the path where your custom config files
-# and plugins exists, or else we will use the default custom/
+# set ZSH_CUSTOM to the path where your custom config files
+# and plugins exists or we use a default value
 if [[ -z "$ZSH_CUSTOM" ]]; then
   ZSH_CUSTOM="$ZSH/custom"
 fi
 
-
-is_plugin() {
+is_plugin()
+{
   local base_dir=$1
   local name=$2
   test -f $base_dir/plugins/$name/$name.plugin.zsh \
     || test -f $base_dir/plugins/$name/_$name
 }
+
 # Add all defined plugins to fpath. This must be done
 # before running compinit.
 for plugin ($plugins); do
@@ -36,8 +36,9 @@ for plugin ($plugins); do
     fpath=($ZSH/plugins/$plugin $fpath)
   fi
 done
+unset plugin
 
-# Figure out the SHORT hostname
+# figure out the SHORT hostname
 if [[ "$OSTYPE" = darwin* ]]; then
   # OS X's $HOST changes with dhcp, etc. Use ComputerName if possible.
   SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST=${HOST/.*/}
@@ -50,11 +51,11 @@ if [ -z "$ZSH_COMPDUMP" ]; then
   ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi
 
-# Load and run compinit
+# load and run compinit
 autoload -U compinit
 compinit -i -d "${ZSH_COMPDUMP}"
 
-# Load all of the plugins that were defined in ~/.zshrc
+# load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
   if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
     source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
@@ -62,15 +63,17 @@ for plugin ($plugins); do
     source $ZSH/plugins/$plugin/$plugin.plugin.zsh
   fi
 done
+unset plugin
 
-# Load all of your custom configurations from custom/
+# load all of your custom configurations
 for config_file ($ZSH_CUSTOM/*.zsh(N)); do
   source $config_file
 done
 unset config_file
 
-# Load the theme
+# load the theme
 if [ "$ZSH_THEME" = "random" ]; then
+
   themes=($ZSH/themes/*zsh-theme)
   N=${#themes[@]}
   ((N=(RANDOM%N)+1))
@@ -84,7 +87,8 @@ if [ "$ZSH_THEME" = "random" ]; then
   unset N
 
 else
-  if [ ! "$ZSH_THEME" = ""  ]; then
+
+  if [ ! "$ZSH_THEME" = "" ]; then
     if [ -f "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme" ]; then
       source "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme"
     elif [ -f "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme" ]; then
@@ -93,4 +97,6 @@ else
       source "$ZSH/themes/$ZSH_THEME.zsh-theme"
     fi
   fi
+
 fi
+

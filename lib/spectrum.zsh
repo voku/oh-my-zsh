@@ -50,7 +50,8 @@ spectrum_ls()
 }
 
 # Show all 256 colors where the background is set to specific color
-spectrum_bls() {
+spectrum_bls()
+{
   for code in {000..255}; do
     print -P -- "$BG[$code]$code: $ZSH_SPECTRUM_TEXT %{$reset_color%}"
   done

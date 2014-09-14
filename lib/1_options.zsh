@@ -1,6 +1,8 @@
 
 ############# SETOPT ######################################
 
+# http://zsh.sourceforge.net/Doc/Release/Options-Index.html
+
 setopt \
   `# please no beeeeeeps` \
   NO_BEEP \

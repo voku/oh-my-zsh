@@ -1,3 +1,4 @@
+
 zsh_stats()
 {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
@@ -20,8 +21,7 @@ upgrade_oh_my_zsh()
 
 take()
 {
-  mkdir -p $1
-  cd $1
+  mkdir -p $1 && cd $1
 }
 
 #
